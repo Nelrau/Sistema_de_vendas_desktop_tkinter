@@ -1,0 +1,25 @@
+Sistema de Vendas e Controle de Estoque (Desktop)
+
+Este projeto consiste em um sistema simples para pequenas lojas, desenvolvido em Python com interface gráfica (Tkinter). O objetivo é facilitar o controle de produtos, vendas e estoque de forma prática e organizada.
+
+O sistema possui dois modos de uso:
+
+Modo Cliente: permite visualizar produtos, adicionar ao carrinho e simular compras.
+Modo Administrador: permite gerenciar produtos, editar estoque e acompanhar informações do sistema.
+
+Funcionalidades principais:
+
+Cadastro e leitura de produtos via arquivo JSON
+Controle e atualização de estoque
+Simulação de vendas com redução automática do estoque
+Exibição de informações detalhadas dos produtos
+Interface simples e intuitiva para uso no dia a dia
+
+O sistema foi pensado para pequenos negócios como lojas de cosméticos, roupas, mercadinhos ou serviços locais, podendo ser adaptado conforme a necessidade.
+
+Projeto em evolução, com possibilidade de expansão para:
+
+Histórico de vendas
+Relatórios diários
+Sistema de login
+Versão executável (.exe)
