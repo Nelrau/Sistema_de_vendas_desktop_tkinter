@@ -1,5 +1,5 @@
 
-from clienteFrame import ClienteFrame
+from clienteFrame import ClienteFrame, Carrinho
 from adminFrame import AdminFrame
 import tkinter as tk, json
 from tkinter import ttk
@@ -64,7 +64,6 @@ class Tela():
    def mostrar_cliente(self):
       self.limpar_frame()
       self.frame_atual = ClienteFrame(self.container)
-      print(self.frame_atual)
       self.frame_atual.pack(fill="both", expand=True)
       
 

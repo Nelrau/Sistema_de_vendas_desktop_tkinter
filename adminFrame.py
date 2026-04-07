@@ -3,30 +3,16 @@ from tkinter import ttk
 from produtos import Produto
 
 class AdminFrame(tk.Frame):
+   """ Admin ativa modo admin, Tela libera funções de admin, Admin escolhe o produto, Tela chama o botão editar_estoque(), atraves do sistema altera estoque, Sistema salva JSON, Tela atualiza interface """
    def __init__(self, parent):
-      super().__init__(parent) # Cor para teste
       
-        
-
-   #Admin ativa modo admin
-   #     ↓
-   #Tela libera funções de admin
-
-   #Admin escolhe produto
-   #     ↓
-   #Tela chama → editar_estoque()
-   #     ↓
-   #Sistema altera estoque
-   #     ↓
-   #Sistema salva JSON
-   #     ↓
-   #Tela atualiza interface
+      super().__init__(parent) # Cor para teste
+  
       with open('produtos.json', 'r') as f:
          self.db = json.load(f)
-      self.opcao = ttk.Combobox(self, values=list(self.db.keys()))
-      self.opcao.current(0)
-      self.opcao.grid(row=2, column=1)
-
+      self.opcao = ttk.Combobox(self, values= list(self.db.keys()))
+      self.opcao.grid(row=0, column=1)
+      
       self.area_text = tk.Text(self, width=35, height=7, background='lightgray', font=20)
       self.area_text.grid(row=3, column=1, columnspan=2)
 
@@ -55,7 +41,11 @@ class AdminFrame(tk.Frame):
       
       selecionado = self.opcao.get()
       
-      self.qtd = self.input_qtd.get()
+      try:
+         self.qtd = int(self.input_qtd.get())
+      except ValueError:
+         print("Digite um número válido")
+         return
       if not self.qtd:
          self.qtd = 0
       self.produtos = Produto()
@@ -64,6 +54,7 @@ class AdminFrame(tk.Frame):
       self.area_text.delete('1.0', tk.END)
       self.area_text.insert(tk.END, resultado)
       self.atualizar_tela()
+      self.input_qtd.delete(0, tk.END)
     
     
    def atualizar_tela(self):
@@ -71,11 +62,14 @@ class AdminFrame(tk.Frame):
          self.db = json.load(f)
       selecionado = self.opcao.get()
 
+      self.opcao['values'] = list(self.db.keys())
       if selecionado in self.db:
          dados = self.db[selecionado]
 
          self.area_text.delete('1.0', tk.END)
-         self.area_text.insert(tk.END, f'''{selecionado} Preço: {dados['preço']}Descrição: {dados['descrição']}
-Estoque: {dados['estoque']}''')
+         self.area_text.insert(tk.END, f'''{selecionado}
+Preço: {dados['preço']}
+Descrição: {dados['descrição']}
+Estoque: {dados['estoque']}'''
       
       
